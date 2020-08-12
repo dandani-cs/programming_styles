@@ -3,7 +3,7 @@ import os
 import re
 from subprocess import getstatusoutput, getoutput
 
-prg = ".\\old_times_ex3.py"
+prg = ".\\old_times_ex3_ver2.py"
 
 # --------------------------------------------------
 def test_exists():
