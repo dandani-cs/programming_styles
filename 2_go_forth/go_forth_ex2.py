@@ -34,30 +34,32 @@ def remove_stop_words():
 
     heap["words"] = []
     stack.append([stack.pop(), 0])
-    while len(stack):
-        heap['values'] = stack.pop()
-
-        stack.append(heap['values'])
-
-        print(stack[-1][1] < len(stack[-1][0]))
-
+    while len(stack) > 1:
         while stack[-1][1] < len(stack[-1][0]):
-            print("INSIDE")
             heap['values'] = stack.pop()
             if stack[-1] == heap['values'][0][heap['values'][1]]:
                 stack.pop()
-                stack.append(0)
+                stack.append(heap['values'])
                 break
 
             stack.append(heap['values'][1])
             stack.append(1)
             stack.append(stack.pop() + stack.pop())
+            heap['values'][1] = stack.pop()
 
+            stack.append(heap['values'])
+
+
+        if stack[-1][1] == len(stack[-1][0]):
+            heap['values'] = stack.pop()
+            heap['words'].append(stack.pop())
+            stack.append(heap['values'])
+
+        stack.append(0)
         heap['values'][1] = stack.pop()
 
-        print(stack[-1])
-
     # print(heap['words'])
+    stack.pop()
     stack.extend(heap['words'])
     del heap['words']
 
@@ -66,17 +68,49 @@ def remove_stop_words():
 def frequencies():
     heap['word_freqs'] = {}
 
-    while len(stack):
-        if stack[-1] in heap['word_freqs']:
-            stack.append(heap['word_freqs'][stack[-1]])
+    stack.append([list(heap['word_freqs'].keys()), 0])
+
+    while len(stack) > 1:
+        while stack[-1][1] < len(stack[-1][0]):
+            heap['values'] = stack.pop()
+
+            if stack[-1] == heap['values'][0][heap['values'][1]]:
+                stack.append(heap['word_freqs'][stack[-1]])
+                stack.append(1)
+                stack.append(stack.pop() + stack.pop())
+                heap['word_freqs'][stack.pop()] = stack.pop()
+                stack.append([list(heap['word_freqs'].keys()), 0])
+                break
+
+            stack.append(heap['values'][1])
             stack.append(1)
             stack.append(stack.pop() + stack.pop())
+            heap['values'][1] = stack.pop()
 
-        else:
+            stack.append([list(heap['word_freqs'].keys()), heap['values'][1]])
+
+
+        if stack[-1][1] == len(stack[-1][0]):
+            heap['values'] = stack.pop()
             stack.append(1)
+            heap['word_freqs'][stack.pop()] = stack.pop()
+            stack.append([list(heap['word_freqs'].keys()), 0])
 
-        heap['word_freqs'][stack.pop()] = stack.pop()
+        stack.append(0)
+        heap['values'][1] = stack.pop()
 
+
+        # if stack[-1] in heap['word_freqs']:
+        #     stack.append(heap['word_freqs'][stack[-1]])
+        #     stack.append(1)
+        #     stack.append(stack.pop() + stack.pop())
+        #
+        # else:
+        #     stack.append(1)
+        #
+        # heap['word_freqs'][stack.pop()] = stack.pop()
+
+    stack.pop()
     stack.append(heap["word_freqs"])
     del heap["word_freqs"]
 
