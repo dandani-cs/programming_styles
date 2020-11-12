@@ -8,16 +8,12 @@ characters = np.char.lower(characters)
 
 sp = np.where(characters == " ")
 sp2 = np.repeat(sp, 2)
-print(sp2)
 
 w_ranges = np.reshape(sp2[1:-1], (-1, 2))
-print(w_ranges)
 w_ranges = w_ranges[np.where(w_ranges[:, 1] - w_ranges[:, 0] > 2)]
-print(w_ranges)
 
 words = list(map(lambda r: characters[r[0]:r[1]], w_ranges))
 swords = np.array(list(map(lambda w: "".join(w).strip(), words)))
-print(swords)
 
 stop_words = np.array(list(set(open('../stop_words.txt').read().split(","))))
 ns_words = swords[~np.isin(swords, stop_words)]
