@@ -12,11 +12,11 @@ def read_file(path_to_file):
 
 def filter_chars_and_normalize():
     global data
-    for i in tange(len(data)):
+    for i in range(len(data)):
         if not data[i].isalnum():
             data[i] = " "
         else:
-            data[i] = data.lower()
+            data[i] = data[i].lower()
 
 
 def scan():
