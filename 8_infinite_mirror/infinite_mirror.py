@@ -34,6 +34,7 @@ stopwords = set(open('../stop_words.txt').read().split(","))
 words = re.findall('[a-z]{2,}', open(sys.argv[1]).read().lower())
 wordfreqs = {}
 
-count(words, stopwords, wordfreqs)
+for i in range(0, len(words), RECURSION_LIMIT):
+    count(words[i:i+RECURSION_LIMIT], stop_words, word_freqs)
 
 wf_print(sorted(wordfreqs.items(), key=operator.itemgetter(1), reverse=True)[:25])
