@@ -40,6 +40,9 @@ class DataStorageManager:
         self._data = pattern.sub(' ', self._data).lower()
         self._data = ''.join(self._data).split()
 
+    def words(self):
+        return self._data
+
 
 class StopWordManager:
     _stop_words = []
@@ -49,6 +52,9 @@ class StopWordManager:
         with open('../stop_words.txt') as f:
             self._stop_words = f.read().split(',')
         self._stop_words.extend(list(string.ascii_lowercase))
+
+    def is_stop_word(self, word):
+        return word in self._stop_words
 
 
 class WordFrequencyManager:
