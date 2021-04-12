@@ -49,7 +49,7 @@ class DataStorage:
         for w in data_str.split():
             if not self._stop_word_filter.is_stop_word(w):
                 for h in self._word_event_handlers:
-                    h()
+                    h(w)
 
 
     def register_for_word_event(self, handler):
@@ -96,5 +96,5 @@ class WordFrequencyController:
 wfapp = WordFrequencyFramework()
 stop_word_filter = StopWordFilter(wfapp)
 data_storage = DataStorage(wfapp, stop_word_filter)
-word_freq_counter = WordFrequencyCounter(wfapp, data_storage)
+word_freq_counter = WordFrequencyController(wfapp, data_storage)
 wfapp.run(sys.argv[1])
