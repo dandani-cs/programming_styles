@@ -20,7 +20,7 @@ def test_first_line():
     out = getoutput(f'python {prg} ../input_file.txt')
     expected = "2"
 
-    assert out.split('\n')[3][-1] == expected
+    assert out.split('\n')[0][-1] == expected
 
 # ------------------------------------------------------
 def test_sort():
@@ -41,7 +41,7 @@ def test_config2():
     out = getoutput(f'python {prg} ../input_file.txt')
     expected = "2"
 
-    assert out.split('\n')[3][-1] == expected
+    assert out.split('\n')[0][-1] == expected
 
     basis = 'live - 2'
     to_find = 'africa - 1'
