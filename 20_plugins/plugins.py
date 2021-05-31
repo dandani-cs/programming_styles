@@ -5,7 +5,7 @@ def load_plugins():
     config.read("config.ini")
 
     words_plugin = config.get('Plugins', 'words')
-    frequencies_plugin = congfig.get('Plugins', 'frequencies')
+    frequencies_plugin = config.get('Plugins', 'frequencies')
 
     global tfwords, tffreqs
 
