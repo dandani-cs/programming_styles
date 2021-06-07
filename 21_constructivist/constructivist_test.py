@@ -5,6 +5,7 @@ import sys
 from subprocess import getstatusoutput, getoutput
 
 prg = "constructivist.py"
+prg_stop = "constructivist_stop.py"
 
 # --------------------------------------------------
 def test_exists():
@@ -37,7 +38,7 @@ def test_sort():
 def test_IOError():
     """Checks that an IOError is raised when input file does not exist"""
 
-    out = getoutput(f'python {prg} ../input_file.txt')
+    out = getoutput(f'python {prg}')
 
     assert "I/O error" in out
 
@@ -46,6 +47,6 @@ def test_IOError():
 def test_stop_words_IOError(tmp_path):
     """Checks that the program raises an IO error when stop_words file not found"""
 
-    out = getoutput(f'python {prg} ../input_file.txt')
+    out = getoutput(f'python {prg_stop} ../input_file.txt')
 
-    assert "when opening ../stop_words.txt:" in out
+    assert "when opening stop_words.txt:" in out
