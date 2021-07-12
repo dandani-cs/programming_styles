@@ -8,7 +8,7 @@ non_stop_words = [(), lambda : \
                             w if w not in stop_words[0] else '',
                                 all_words[0]))]
 
-unique_words = [(), lambda : set([w for w in stop_words[0] if w != ''])]
+unique_words = [(), lambda : set([w for w in non_stop_words[0] if w != ''])]
 
 counts = [(), lambda : list(map(lambda w, word_list : word_list.count(w), \
                             unique_words[0], \
@@ -30,7 +30,7 @@ def update():
 
 
 all_words[0] = re.findall('[a-z]{2,}', open(sys.argv[1]).read().lower())
-stop_words[0] = set(open('.../stop_words.txt').read().split(','))
+stop_words[0] = set(open('../stop_words.txt').read().split(','))
 
 update()
 
