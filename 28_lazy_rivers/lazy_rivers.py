@@ -1,4 +1,4 @@
-import sys, operator, sys
+import sys, operator, string
 
 def characters(filename):
     for line in open(filename):
@@ -9,7 +9,7 @@ def characters(filename):
 def all_words(filename):
     start_char = True
     for c in characters(filename):
-        if start_char = True:
+        if start_char == True:
             word = ""
 
             if c.isalnum():
