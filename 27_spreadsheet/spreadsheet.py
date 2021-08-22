@@ -36,3 +36,5 @@ update()
 
 for (w, c) in sorted_data[0][:25]:
     print(w, '-', c)
+
+in = input("press any key to exit")
