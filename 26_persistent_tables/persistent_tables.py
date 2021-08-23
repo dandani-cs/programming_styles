@@ -63,3 +63,5 @@ with sqlite3.connect('tf.db') as connection:
         row = c.fetchone()
         if row != None:
             print(row[0], '-', str(row[1]))
+
+input("Press any key to exit")
